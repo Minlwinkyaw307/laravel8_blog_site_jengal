@@ -23,6 +23,7 @@ class CreateBlogsTable extends Migration
             $table->foreignId('blog_status_id');
             $table->foreignId('category_id');
             $table->dateTime('published_at');
+            $table->boolean('is_featured');
             $table->softDeletes();
             $table->timestamps();
         });

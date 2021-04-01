@@ -3,18 +3,26 @@
 namespace App\View\Components\blog;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 
 class FeaturedPosts extends Component
 {
+
+    /**
+     * @var Collection
+     */
+    public $blogs;
+
+
     /**
      * Create a new component instance.
      *
-     * @return void
+     * @param Collection $blogs
      */
-    public function __construct()
+    public function __construct(Collection $blogs)
     {
-        //
+        $this->blogs = $blogs;
     }
 
     /**

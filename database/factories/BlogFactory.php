@@ -34,6 +34,7 @@ class BlogFactory extends Factory
             'blog_status_id'        => BlogStatus::inRandomOrder()->first()->id,
             'category_id'           => Category::inRandomOrder()->first()->id,
             'published_at'          => $this->faker->dateTimeBetween('-1 month', 'now'),
+            'is_featured'           => $this->faker->boolean(20),
             'deleted_at'            => null,
         ];
     }

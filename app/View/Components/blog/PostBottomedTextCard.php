@@ -2,24 +2,31 @@
 
 namespace App\View\Components\blog;
 
+use App\Models\Blog;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class PostBottomedTextCard extends Component
 {
     /**
+     * @var Blog
+     */
+    public $blog;
+
+    /**
      * Create a new component instance.
      *
-     * @return void
+     * @param Blog $blog
      */
-    public function __construct()
+    public function __construct(Blog $blog)
     {
-        //
+        $this->blog = $blog;
     }
 
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
+     * @return View|\Closure|string
      */
     public function render()
     {
