@@ -24,10 +24,10 @@ class DatabaseSeeder extends Seeder
         ]);
         User::factory(1)->create();
 
-        Blog::factory(10)->create();
+        Blog::factory(100)->create();
 
-        BlogView::factory(50)->create();
+        BlogView::factory(200)->create();
 
-        BlogComment::factory(50)->create();
+        BlogComment::factory(200)->create();
     }
 }

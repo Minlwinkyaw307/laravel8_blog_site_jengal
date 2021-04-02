@@ -22,8 +22,9 @@ class BlogViewFactory extends Factory
      */
     public function definition(): array
     {
+        $blog_count = Blog::count();
         return [
-            'blog_id'   => Blog::inRandomOrder()->first()->id,
+            'blog_id'   => rand(1, $blog_count),
             'ip'        => $this->faker->ipv4,
         ];
     }

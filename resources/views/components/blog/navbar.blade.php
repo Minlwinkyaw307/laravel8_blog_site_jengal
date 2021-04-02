@@ -27,7 +27,7 @@
                     <form action="{{ route('blog.blogs', request()->query()) }}" method="get">
                         <div class="search-form">
 
-                            <input class="search-input" type="text" name="search" placeholder="Enter Your Search ...">
+                            <input class="search-input" type="text" name="search" placeholder="Enter Your Search ..." value="{{ request()->query('search') }}">
                             <button class="search-close"><i class="fa fa-times"></i></button>
                         </div>
                     </form>
@@ -42,9 +42,8 @@
 
             <div class="section-row">
                 <ul class="nav-aside-menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contacts</a></li>
+                    <li><a href="{{ route('blog.index') }}">Home</a></li>
+                    <li><a href="">About Us</a></li>
                 </ul>
             </div>
 

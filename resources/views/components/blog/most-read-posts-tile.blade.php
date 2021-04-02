@@ -1,7 +1,7 @@
 <div>
     <div class="aside-widget">
         <div class="section-title">
-            <h2>{{ $title }}</h2>
+            <h2>Most Read</h2>
         </div>
         @foreach($blogs as $blog)
             <div class="post post-widget">

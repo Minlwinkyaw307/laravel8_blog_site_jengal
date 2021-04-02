@@ -22,7 +22,7 @@
             <div class="row">
 
                 <div class="col-md-8">
-                    <div class="section-row sticky-container">
+                    <div class="section" style="padding-bottom: 7rem;">
                         <div class="main-post">
                             <h3>{{ $blog->title }}</h3>
                             <div class="" style="padding: 10px 0;">
@@ -30,22 +30,7 @@
                             </div>
                             {!! $blog->content !!}
                         </div>
-                        <div class="post-shares sticky-shares">
-                            <a href="#" class="share-facebook"><i class="fa fa-facebook"></i></a>
-                            <a href="#" class="share-twitter"><i class="fa fa-twitter"></i></a>
-                            <a href="#" class="share-google-plus"><i class="fa fa-google-plus"></i></a>
-                            <a href="#" class="share-pinterest"><i class="fa fa-pinterest"></i></a>
-                            <a href="#" class="share-linkedin"><i class="fa fa-linkedin"></i></a>
-                            <a href="#"><i class="fa fa-envelope"></i></a>
-                        </div>
                     </div>
-
-                    <div class="section-row text-center">
-                        <a href="#" style="display: inline-block;margin: auto;">
-                            <img class="img-responsive" src="img/ad-2.jpg" alt="">
-                        </a>
-                    </div>
-
 
                     <div class="section-row">
                         <div class="post-author">

@@ -26,6 +26,9 @@ class BlogFactory extends Factory
      */
     public function definition(): array
     {
+        $blog_status_count = BlogStatus::count();
+        $category_count = Category::count();
+
         return [
             'thumbnail'             => $this->faker->image(),
             'image'                 => $this->faker->image(),
@@ -33,10 +36,10 @@ class BlogFactory extends Factory
             'title'                 => $this->faker->realText(25),
             'slug'                  => Str::slug($this->faker->realText(25)),
             'content'               => $this->faker->realText(),
-            'blog_status_id'        => BlogStatus::inRandomOrder()->first()->id,
-            'category_id'           => Category::inRandomOrder()->first()->id,
+            'blog_status_id'        => rand(1, $blog_status_count),
+            'category_id'           => rand(1, $category_count),
             'published_at'          => $this->faker->dateTimeBetween('-1 month', 'now'),
-            'is_featured'           => $this->faker->boolean(20),
+            'is_featured'           => $this->faker->boolean(40),
             'deleted_at'            => null,
         ];
     }

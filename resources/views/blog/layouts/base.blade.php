@@ -10,14 +10,14 @@
 
     <link href="../../../fonts.googleapis.com/css7227.css?family=Nunito+Sans:700%7CNunito:300,600" rel="stylesheet">
 
-    <link type="text/css" rel="stylesheet" href="{{ url('blog/') }}/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="{{ url('blog/') }}/css/bootstrap.min.css"/>
 
     <link rel="stylesheet" href="{{ url('blog/') }}/css/font-awesome.min.css">
 
-    <link type="text/css" rel="stylesheet" href="{{ url('blog/') }}/css/style.css" />
+    <link type="text/css" rel="stylesheet" href="{{ url('blog/') }}/css/style.css"/>
 
 
-    <!--[if lt IE 9]>
+<!--[if lt IE 9]>
     <script src="{{ url('blog/') }}/https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="{{ url('blog/') }}/https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
@@ -25,8 +25,12 @@
     <style>
         @foreach($categories as $category)
             .{{ $category->slug }} a:after {
-            background-color: #{{ $category->color }};
-        }
+                background-color: #{{ $category->color }};
+            }
+            .category-widget ul li > a.{{ $category->slug }}:hover, .category-widget ul li > a.{{ $category->slug }}:focus
+            {
+                color: #{{ $category->color }};
+            }
         @endforeach
 
     </style>
