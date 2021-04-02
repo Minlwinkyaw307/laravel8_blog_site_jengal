@@ -8,7 +8,6 @@ use App\Models\BlogComment;
 use App\Models\BlogView;
 use App\Models\Category;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
