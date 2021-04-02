@@ -41,7 +41,6 @@ class CategorySeeder extends Seeder
             ],
         ];
 
-        Category::truncate();
         Category::insert($rows);
     }
 }

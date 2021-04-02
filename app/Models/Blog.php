@@ -61,9 +61,34 @@ class Blog extends Model
         'published_at',
     ];
 
+    protected $appends = ['thumbnailUrl', 'imageUrl'];
+
     protected $guarded = [];
 
     protected static $logName = "Blog";
+
+
+    /**
+     * Return Thumbnail as Url
+     *
+     * @return string
+     */
+    public function getThumbnailUrlAttribute(): string
+    {
+        // TODO: need to fixed to real one
+        return 'https://picsum.photos/750/450';
+    }
+
+    /**
+     * Return Image as url
+     *
+     * @return string
+     */
+    public function getImageUrlAttribute(): string
+    {
+        // TODO: need to fixed to real one
+        return 'https://picsum.photos/750/450';
+    }
 
     /**
      * Return creator information (From User Model)

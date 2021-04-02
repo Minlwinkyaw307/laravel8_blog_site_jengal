@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class BlogFactory extends Factory
 {
@@ -29,7 +30,8 @@ class BlogFactory extends Factory
             'thumbnail'             => $this->faker->image(),
             'image'                 => $this->faker->image(),
             'user_id'               => 1,
-            'title'                 => $this->faker->title(),
+            'title'                 => $this->faker->realText(25),
+            'slug'                  => Str::slug($this->faker->realText(25)),
             'content'               => $this->faker->realText(),
             'blog_status_id'        => BlogStatus::inRandomOrder()->first()->id,
             'category_id'           => Category::inRandomOrder()->first()->id,

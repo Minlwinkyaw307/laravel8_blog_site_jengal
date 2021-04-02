@@ -2,28 +2,27 @@
 
 namespace App\View\Components\blog;
 
+use App\Models\Blog;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 
-class MostReadPosts extends Component
+class PostRow extends Component
 {
-
     /**
-     * Collection of most read posts (Blog Model)
+     * Current blog model
      *
-     * @var Collection
+     * @var Blog
      */
-    public $blogs;
+    public $blog;
 
     /**
      * Create a new component instance.
      *
-     * @param Collection $blogs
+     * @param Blog $blog
      */
-    public function __construct(Collection $blogs)
+    public function __construct(Blog $blog)
     {
-        $this->blogs = $blogs;
+        $this->blog = $blog;
     }
 
     /**
@@ -33,6 +32,6 @@ class MostReadPosts extends Component
      */
     public function render()
     {
-        return view('components.blog.most-read-posts');
+        return view('components.blog.post-row');
     }
 }

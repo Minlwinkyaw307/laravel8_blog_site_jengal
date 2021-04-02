@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\View\Composers\CategoryComposer;
 use App\View\Composers\FeaturedPostsComposer;
 use App\View\Composers\RecentPostsComposer;
 use Illuminate\Support\ServiceProvider;
@@ -28,5 +29,6 @@ class ViewServiceProvider extends ServiceProvider
     {
         View::composer('blog.*', FeaturedPostsComposer::class);
         View::composer('blog.*', RecentPostsComposer::class);
+        View::composer('blog.*', CategoryComposer::class);
     }
 }

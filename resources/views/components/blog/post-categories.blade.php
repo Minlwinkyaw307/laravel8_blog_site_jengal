@@ -12,10 +12,9 @@
     </div>
     <div class="category-widget">
         <ul>
-            <li><a href="#" class="cat-1">Web Design<span>340</span></a></li>
-            <li><a href="#" class="cat-2">JavaScript<span>74</span></a></li>
-            <li><a href="#" class="cat-4">JQuery<span>41</span></a></li>
-            <li><a href="#" class="cat-3">CSS<span>35</span></a></li>
+            @foreach($categories as $category)
+                <li><a href="#" class="cat-1" >{{ $category->name }}<span style="background-color: #{{ $category->color }};">{{ $category->blogs_count }}</span></a></li>
+            @endforeach
         </ul>
     </div>
 </div>

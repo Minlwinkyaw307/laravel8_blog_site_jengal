@@ -1,5 +1,4 @@
 install:
-	composer update
 	php artisan key:generate
 	php artisan db:wipe
 	php artisan migrate:install

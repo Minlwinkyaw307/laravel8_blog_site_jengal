@@ -52,7 +52,7 @@ class Category extends Model
      *
      * @return HasMany
      */
-    public function blog(): HasMany
+    public function blogs(): HasMany
     {
         return $this->hasMany(Blog::class);
     }

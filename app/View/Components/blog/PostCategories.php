@@ -2,24 +2,34 @@
 
 namespace App\View\Components\blog;
 
+use App\Models\Category;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 
 class PostCategories extends Component
 {
     /**
+     * All the categories of the posts(Blogs)
+     *
+     * @var Collection
+     */
+    public $categories;
+
+    /**
      * Create a new component instance.
      *
-     * @return void
+     * @param Collection $categories
      */
-    public function __construct()
+    public function __construct(Collection $categories)
     {
-        //
+        $this->categories = $categories;
     }
 
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
+     * @return View|\Closure|string
      */
     public function render()
     {

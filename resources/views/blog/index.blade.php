@@ -18,10 +18,10 @@
     <div class="section">
         <div class="container">
             <div class="col-md-8">
-                <x-blog::most-read-posts></x-blog::most-read-posts>
+                <x-blog::most-read-posts :blogs="$most_read_posts"></x-blog::most-read-posts>
             </div>
             <div class="col-md-4">
-                <x-blog::post-categories></x-blog::post-categories>
+                <x-blog::post-categories :categories="$categories"></x-blog::post-categories>
             </div>
         </div>
     </div>
