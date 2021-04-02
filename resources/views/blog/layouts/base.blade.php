@@ -17,7 +17,7 @@
     <link type="text/css" rel="stylesheet" href="{{ url('blog/') }}/css/style.css"/>
 
 
-<!--[if lt IE 9]>
+    <!--[if lt IE 9]>
     <script src="{{ url('blog/') }}/https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="{{ url('blog/') }}/https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->

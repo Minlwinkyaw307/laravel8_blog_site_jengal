@@ -15,6 +15,7 @@ class PackageServiceProvider extends ServiceProvider
     public function register()
     {
         Blade::componentNamespace('App\\View\\Components\\blog', 'blog');
+        Blade::componentNamespace('App\\View\\Components\\admin', 'admin');
     }
 
     /**

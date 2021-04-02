@@ -44,6 +44,21 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static \Illuminate\Database\Query\Builder|Blog withTrashed()
  * @method static \Illuminate\Database\Query\Builder|Blog withoutTrashed()
  * @mixin \Eloquent
+ * @property int $user_id
+ * @property string $slug
+ * @property int $is_featured
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\BlogComment[] $blog_comments
+ * @property-read int|null $blog_comments_count
+ * @property-read \App\Models\BlogStatus $blog_status
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\BlogView[] $blog_views
+ * @property-read int|null $blog_views_count
+ * @property-read \App\Models\Category $category
+ * @property-read string $image_url
+ * @property-read string $thumbnail_url
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Blog whereIsFeatured($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Blog whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Blog whereUserId($value)
  */
 class Blog extends Model
 {

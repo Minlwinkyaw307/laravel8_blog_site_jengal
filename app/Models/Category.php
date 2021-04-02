@@ -34,6 +34,10 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static \Illuminate\Database\Query\Builder|Category withTrashed()
  * @method static \Illuminate\Database\Query\Builder|Category withoutTrashed()
  * @mixin \Eloquent
+ * @property string $slug
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Blog[] $blogs
+ * @property-read int|null $blogs_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereSlug($value)
  */
 class Category extends Model
 {

@@ -30,6 +30,10 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static \Illuminate\Database\Query\Builder|BlogStatus withTrashed()
  * @method static \Illuminate\Database\Query\Builder|BlogStatus withoutTrashed()
  * @mixin \Eloquent
+ * @property string $color
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Blog[] $blogs
+ * @property-read int|null $blogs_count
+ * @method static \Illuminate\Database\Eloquent\Builder|BlogStatus whereColor($value)
  */
 class BlogStatus extends Model
 {

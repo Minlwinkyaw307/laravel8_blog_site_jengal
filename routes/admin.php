@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/admin', function () {
-    return "Working";
+Route::name('admin.')->prefix('admin/')->group(function() {
+    Route::get('', [AdminController::class, 'index'])->name('index');
+    Route::resource('blog', BlogController::class)->except('show');
 });

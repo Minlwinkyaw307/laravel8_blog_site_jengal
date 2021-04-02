@@ -43,6 +43,12 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static \Illuminate\Database\Query\Builder|User withTrashed()
  * @method static \Illuminate\Database\Query\Builder|User withoutTrashed()
  * @mixin \Eloquent
+ * @property string $description
+ * @property string $github_link
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Blog[] $blogs
+ * @property-read int|null $blogs_count
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereGithubLink($value)
  */
 class User extends Authenticatable
 {
