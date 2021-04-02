@@ -76,7 +76,7 @@ class Blog extends Model
     public function getThumbnailUrlAttribute(): string
     {
         // TODO: need to fixed to real one
-        return 'https://picsum.photos/750/450';
+        return 'https://picsum.photos/750/450/';
     }
 
     /**
@@ -87,7 +87,7 @@ class Blog extends Model
     public function getImageUrlAttribute(): string
     {
         // TODO: need to fixed to real one
-        return 'https://picsum.photos/750/450';
+        return 'https://picsum.photos/750/450/';
     }
 
     /**
@@ -128,6 +128,16 @@ class Blog extends Model
     public function blog_views(): HasMany
     {
         return $this->hasMany(BlogView::class);
+    }
+
+    /**
+     * Return all the blog comments of current blog
+     *
+     * @return HasMany
+     */
+    public function blog_comments(): HasMany
+    {
+        return $this->hasMany(BlogComment::class);
     }
 
 }

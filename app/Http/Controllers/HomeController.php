@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\IndexBlogsRequest;
+use App\Http\Requests\StoreBlogCommentRequest;
 use App\Models\Blog;
+use App\Models\BlogComment;
 use Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -18,30 +22,73 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $most_read_posts = Blog::where([
-            ['blog_status_id', '=', 3],
-            ['published_at', '<=', Carbon::now()]
-        ])
-            ->with('category')
-            ->withCount('blog_views')
-            ->orderBy('blog_views_count', 'desc')
-            ->limit(5)
-            ->get();
-        return view('blog.index', [
-            'most_read_posts' => $most_read_posts
-        ]);
+        return view('blog.index');
     }
 
     /**
      * Show detail of the blog which slug was passed on route
      *
      * @param Request $request
-     * @param $slug
-     * @return Blog
+     * @param string $slug
+     * @return Application|Factory|View
      */
-    public function blog_view(Request $request, $slug): Blog
+    public function blog_view(Request $request, string $slug)
     {
-        $blog = Blog::where('slug', $slug)->with('category')->withCount('blog_views')->firstOrFail();
-        return $blog;
+        $blog = Blog::where('slug', $slug)
+            ->with('category', 'user')
+            ->withCount(['blog_views', 'blog_comments'])
+            ->firstOrFail();
+        return view('blog.blog-detail', [
+            'blog' => $blog
+        ]);
+    }
+
+    public function blogs(IndexBlogsRequest $request)
+    {
+        $blogs = Blog::query();
+
+        if($request->has('category'))
+        {
+            $category_slug = $request->get('category');
+            $blogs->whereHas('category', function($query) use ($category_slug) {
+                $query->where('slug', $category_slug);
+            });
+        }
+
+        if($request->has('search'))
+        {
+            $search = $request->get('search');
+            $blogs = $blogs->where('title', 'like', "%$search%")
+                ->orWhere('content', 'like', "%$search%");
+        }
+        $blogs = $blogs->with('category')->paginate($request->get('per_page') ?? 5);
+        return view('blog.blogs', [
+            'blogs' => $blogs,
+        ]);
+    }
+
+
+    /**
+     * @param StoreBlogCommentRequest $request
+     * @param string $slug
+     * @return RedirectResponse
+     */
+    public function store_comment(StoreBlogCommentRequest $request, string $slug): RedirectResponse
+    {
+        $blog = Blog::where('slug', $slug)->select('id')->firstOrFail();
+        $params = $request->only([
+            'name',
+            'email',
+            'website',
+            'comment'
+        ]);
+
+        $params['blog_id'] = $blog->id;
+        try {
+            BlogComment::create($params);
+            return redirect()->back()->with(['success' => 'Successfully Submitted Your Comment']);
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput()->withErrors('Getting error while creating. Please try again!');
+        }
     }
 }

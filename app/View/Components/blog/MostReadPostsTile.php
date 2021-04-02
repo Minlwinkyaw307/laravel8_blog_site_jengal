@@ -2,24 +2,34 @@
 
 namespace App\View\Components\blog;
 
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 
 class MostReadPostsTile extends Component
 {
+
+    /**
+     * All the most read blogs list
+     *
+     * @var Collection
+     */
+    public $blogs;
+
     /**
      * Create a new component instance.
      *
-     * @return void
+     * @param Collection $blogs
      */
-    public function __construct()
+    public function __construct(Collection $blogs)
     {
-        //
+        $this->blogs = $blogs;
     }
 
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
+     * @return View|\Closure|string
      */
     public function render()
     {

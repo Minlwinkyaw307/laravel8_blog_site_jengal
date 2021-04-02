@@ -21,11 +21,20 @@
     <script src="{{ url('blog/') }}/https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="{{ url('blog/') }}/https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <style>
+        @foreach($categories as $category)
+            .{{ $category->slug }} a:after {
+            background-color: #{{ $category->color }};
+        }
+        @endforeach
+
+    </style>
     @yield('stylesheet')
 </head>
 <body>
 
-<x-blog::navbar></x-blog::navbar>
+<x-blog::navbar :categories="$categories"></x-blog::navbar>
 
 @yield('content')
 

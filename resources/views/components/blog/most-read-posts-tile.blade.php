@@ -1,37 +1,19 @@
 <div>
     <div class="aside-widget">
         <div class="section-title">
-            <h2>Most Read</h2>
+            <h2>{{ $title }}</h2>
         </div>
-        <div class="post post-widget">
-            <a class="post-img" href="blog-post.html"><img src="{{ url('blog/') }}/img/widget-1.jpg" alt=""></a>
-            <div class="post-body">
-                <h3 class="post-title"><a href="blog-post.html">Tell-A-Tool: Guide To Web Design And
-                        Development Tools</a></h3>
+        @foreach($blogs as $blog)
+            <div class="post post-widget">
+                <a class="post-img" href="{{ route('blog.blog_view', $blog->slug) }}"><img
+                        style="max-width: 90px; max-height: 90px; object-fit: cover;" src="{{ $blog->thumbnailUrl }}"
+                        alt="{{ $blog->title }}"></a>
+                <div class="post-body">
+                    <h3 class="post-title"><a href="{{ route('blog.blog_view', $blog->slug) }}">{{ $blog->title }}</a>
+                    </h3>
+                </div>
             </div>
-        </div>
-        <div class="post post-widget">
-            <a class="post-img" href="blog-post.html"><img src="{{ url('blog/') }}/img/widget-2.jpg" alt=""></a>
-            <div class="post-body">
-                <h3 class="post-title"><a href="blog-post.html">Pagedraw UI Builder Turns Your Website
-                        Design Mockup Into Code Automatically</a></h3>
-            </div>
-        </div>
-        <div class="post post-widget">
-            <a class="post-img" href="blog-post.html"><img src="{{ url('blog/') }}/img/widget-3.jpg" alt=""></a>
-            <div class="post-body">
-                <h3 class="post-title"><a href="blog-post.html">Why Node.js Is The Coolest Kid On The
-                        Backend Development Block!</a></h3>
-            </div>
-        </div>
-        <div class="post post-widget">
-            <a class="post-img" href="blog-post.html"><img src="{{ url('blog/') }}/img/widget-4.jpg" alt=""></a>
-            <div class="post-body">
-                <h3 class="post-title"><a href="blog-post.html">Tell-A-Tool: Guide To Web Design And
-                        Development Tools</a></h3>
-            </div>
-        </div>
+        @endforeach
     </div>
-
 </div>
 

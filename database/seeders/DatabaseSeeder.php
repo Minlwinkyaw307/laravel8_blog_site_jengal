@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Blog;
+use App\Models\BlogComment;
 use App\Models\BlogView;
 use App\Models\User;
 use Database\Factories\UserFactory;
@@ -26,5 +27,7 @@ class DatabaseSeeder extends Seeder
         Blog::factory(10)->create();
 
         BlogView::factory(50)->create();
+
+        BlogComment::factory(50)->create();
     }
 }

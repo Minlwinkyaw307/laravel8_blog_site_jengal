@@ -15,8 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::name('blog.')->group(function() {
-    Route::get('/', [HomeController::class, 'index']);
-    Route::get('/blog/{slug}', [HomeController::class, 'blog_view']);
+    Route::get('/', [HomeController::class, 'index'])->name('index');
+    Route::get('/blogs', [HomeController::class, 'blogs'])->name('blogs');
+    Route::get('/blog/{slug}', [HomeController::class, 'blog_view'])->name('blog_view');
+    Route::post('/blog/{slug}', [HomeController::class, 'store_comment'])->name('store_comment');
 });
 
 

@@ -30,7 +30,7 @@ class CategoryComposer
      */
     public function __construct()
     {
-        $this->categories = Category::withCount('blogs')->get();
+        $this->categories = Category::withCount('blogs')->orderBy('blogs_count', 'desc')->get();
     }
 
     /**
