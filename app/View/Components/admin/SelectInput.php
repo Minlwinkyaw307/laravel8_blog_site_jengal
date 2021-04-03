@@ -54,6 +54,10 @@ class SelectInput extends Component
      */
     public $required;
 
+    /**
+     * @var boolean
+     */
+    public $disabled;
 
     /**
      * Create a new component instance.
@@ -67,12 +71,13 @@ class SelectInput extends Component
      * @param null|string $id
      * @param null|string $input_class
      * @param bool $required
+     * @param bool $disabled
      */
     public function __construct(string $name, string $label,
                                 $options, ?string $value, $type='text',
                                 $placeholder='Please Fill The Form',
                                 $id=null, $input_class=null,
-                                $required=true)
+                                $required=true, $disabled=false)
     {
         $this->name = $name;
 
@@ -94,6 +99,8 @@ class SelectInput extends Component
         $this->input_class = $input_class;
 
         $this->required = $required;
+
+        $this->disabled = $disabled;
     }
 
     /**

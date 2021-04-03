@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\View\Composers\CategoryComposer;
+use App\View\Composers\ConfigComposer;
 use App\View\Composers\FeaturedPostsComposer;
 use App\View\Composers\MostReadPostsComposer;
 use App\View\Composers\RecentPostsComposer;
@@ -32,5 +33,6 @@ class ViewServiceProvider extends ServiceProvider
         View::composer('blog.*', RecentPostsComposer::class);
         View::composer('blog.*', CategoryComposer::class);
         View::composer('blog.*', MostReadPostsComposer::class);
+        View::composer('blog.*', ConfigComposer::class);
     }
 }

@@ -19,6 +19,9 @@
         <div class="container">
             <div class="col-md-8">
                 <x-blog::most-read-posts :blogs="$most_read_posts"></x-blog::most-read-posts>
+                <div class="section-row">
+                    <a href="{{ route('blog.blogs') }}" class="primary-button d-inline-block w-100px">Show More</a>
+                </div>
             </div>
             <div class="col-md-4">
                 <x-blog::post-categories :categories="$categories"></x-blog::post-categories>

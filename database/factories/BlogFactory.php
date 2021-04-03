@@ -34,7 +34,7 @@ class BlogFactory extends Factory
             'image'                 => $this->faker->image(),
             'user_id'               => 1,
             'title'                 => $this->faker->realText(25),
-            'slug'                  => Str::slug($this->faker->realText(25)),
+            'slug'                  => Str::slug($this->faker->realText(25)) . '-' . Str::random(5),
             'content'               => $this->faker->realText(),
             'blog_status_id'        => rand(1, $blog_status_count),
             'category_id'           => rand(1, $category_count),

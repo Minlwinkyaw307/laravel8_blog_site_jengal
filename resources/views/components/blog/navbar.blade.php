@@ -5,7 +5,7 @@
             <div class="container">
 
                 <div class="nav-logo">
-                    <a href="{{ route('blog.index') }}" class="logo"><img src="{{ url('blog/') }}/img/logo.png" alt=""></a>
+                    <a href="{{ route('blog.index') }}" class="logo"><img src="{{ $configs->logoUrl  }}" alt=""></a>
                 </div>
 
                 <ul class="nav-menu nav navbar-nav">

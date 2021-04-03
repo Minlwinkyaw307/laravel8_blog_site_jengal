@@ -23,6 +23,7 @@
            name="{{ $name }}"
            value="{{ $value ?? '' }}"
            {{ $required ? 'required' : '' }}
+           {{ $disabled ? 'disabled' : '' }}
            class="form-control {{ $input_class }}"
            id="{{ $id }}"
            placeholder="{{ $placeholder }}">

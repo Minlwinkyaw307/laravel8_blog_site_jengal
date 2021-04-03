@@ -63,6 +63,11 @@ class TextInput extends Component
      */
     public $required;
 
+    /**
+     * @var boolean
+     */
+    public $disabled;
+
 
     /**
      * Create a new component instance.
@@ -78,13 +83,14 @@ class TextInput extends Component
      * @param int $cols
      * @param int $rows
      * @param bool $required
+     * @param bool $disabled
      */
     public function __construct(string $name, string $label,
                                 ?string $value, $type = 'text',
                                 $placeholder = 'Please Fill The Form',
                                 $id = null, $input_class = null,
                                 $textarea = false, $cols=3, $rows=5,
-                                $required=true)
+                                $required=true, $disabled=false)
     {
         $this->name = $name;
 
@@ -109,6 +115,8 @@ class TextInput extends Component
         $this->cols = $cols;
 
         $this->required = $required;
+
+        $this->disabled = $disabled;
     }
 
     /**

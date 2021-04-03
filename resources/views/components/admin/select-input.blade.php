@@ -5,6 +5,7 @@
         class="form-control {{ $input_class }}"
         name="{{ $name }}"
         {{ $required ? 'required' : '' }}
+        {{ $disabled ? 'disabled' : '' }}
     >
         <option value="">{{ $placeholder }}</option>
         @foreach($options as $option=>$value)

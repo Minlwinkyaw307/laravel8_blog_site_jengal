@@ -2,7 +2,7 @@
     <div class="sidebar-inner">
         <div class="sidebar-logo">
             <div class="peers ai-c fxw-nw">
-                <div class="peer peer-greed"><a class="sidebar-link td-n" href="index.html" class="td-n">
+                <div class="peer peer-greed"><a class="sidebar-link td-n" href="{{ route('admin.index') }}" class="td-n">
                         <div class="peers ai-c fxw-nw">
                             <div class="peer">
                                 <div class="logo"><img src="{{ url("dashboard/") }}/images/logo.png" alt=""></div>
@@ -19,7 +19,7 @@
         <ul class="sidebar-menu scrollable pos-r">
             @foreach(config('navigations') as $navigation)
                 <li class="nav-item @if($loop->index == 0) mT-30 @endif {{ \Illuminate\Support\Facades\Route::currentRouteName() == $navigation['route'] ? 'active' : '' }}">
-                    <a class="sidebar-link" href="{{ route($navigation['route']) }}" default>
+                    <a class="sidebar-link" href="{{ route($navigation['route'], $navigation['param']) }}" default>
                         <span
                             class="icon-holder"><i class="c-blue-500 {{ $navigation['icon'] }}"></i>
                         </span>

@@ -17,13 +17,21 @@ class Navbar extends Component
     public $categories;
 
     /**
+     * @var SiteConfig
+     */
+    public $configs;
+
+    /**
      * Create a new component instance.
      *
      * @param Collection $categories
+     * @param SiteConfig $configs
      */
-    public function __construct(Collection $categories)
+    public function __construct(Collection $categories, $configs)
     {
         $this->categories = $categories;
+
+        $this->configs = $configs;
     }
 
     /**

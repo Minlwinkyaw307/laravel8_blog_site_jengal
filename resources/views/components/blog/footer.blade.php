@@ -6,16 +6,18 @@
             <div class="col-md-5">
                 <div class="footer-widget">
                     <div class="footer-logo">
-                        <a href="index.html" class="logo"><img src="{{ url('blog/') }}/img/logo.png" alt=""></a>
+                        <a href="{{ route('blog.index') }}" class="logo">
+                            <img src="{{ $configs->logoUrl }}" alt="Site Logo">
+                        </a>
                     </div>
                     <ul class="footer-nav">
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Advertisement</a></li>
+                        <li><a href="{{ route('blog.policy') }}">Privacy Policy</a></li>
                     </ul>
                     <div class="footer-copyright">
-<span>&copy;
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com/" target="_blank">Colorlib</a>
-</span>
+                        <span>&copy;
+                        Copyright &copy; {{ \Carbon\Carbon::now()->format('Y') }} All Rights Reserved. Created By <a
+                                href="http://minlwinkyaw.com/">Min Lwin Kyaw</a>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -25,9 +27,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                         <div class="footer-widget">
                             <h3 class="footer-title">About Us</h3>
                             <ul class="footer-links">
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="#">Join Us</a></li>
-                                <li><a href="contact.html">Contacts</a></li>
+                                <li><a href="{{ route('blog.about') }}">About Us</a></li>
+                                <li><a href="{{ route('blog.contact') }}">Contacts</a></li>
                             </ul>
                         </div>
                     </div>
@@ -35,10 +36,14 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                         <div class="footer-widget">
                             <h3 class="footer-title">Catagories</h3>
                             <ul class="footer-links">
-                                <li><a href="category.html">Web Design</a></li>
-                                <li><a href="category.html">JavaScript</a></li>
-                                <li><a href="category.html">Css</a></li>
-                                <li><a href="category.html">Jquery</a></li>
+                                @foreach($categories as $category)
+                                    @if($loop->index === 5)
+                                        @break
+                                    @endif
+                                    <li><a
+                                            href="{{ route('blog.blogs', array_merge(request()->query(), ['category' => $category->slug])) }}">{{ $category->name }}</a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -46,18 +51,12 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             </div>
             <div class="col-md-3">
                 <div class="footer-widget">
-                    <h3 class="footer-title">Join our Newsletter</h3>
-                    <div class="footer-newsletter">
-                        <form>
-                            <input class="input" type="email" name="newsletter" placeholder="Enter your email">
-                            <button class="newsletter-btn"><i class="fa fa-paper-plane"></i></button>
-                        </form>
-                    </div>
+                    <h3 class="footer-title">Social Media</h3>
                     <ul class="footer-social">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                        <li><a href="{{ $configs->facebook }}"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="{{ $configs->twitter }}"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="{{ $configs->google }}"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="{{ $configs->github }}"><i class="fa fa-github"></i></a></li>
                     </ul>
                 </div>
             </div>

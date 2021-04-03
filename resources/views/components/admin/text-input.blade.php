@@ -7,6 +7,7 @@
                class="form-control {{ $input_class }}"
                id="{{ $id }}"
                {{ $required ? 'required' : '' }}
+               {{ $disabled ? 'disabled' : '' }}
                placeholder="{{ $placeholder }}">
     @else
         <textarea name="{{ $name }}"
@@ -14,6 +15,7 @@
                   cols="{{ $cols }}"
                   rows="{{ $rows }}"
                   {{ $required ? 'required' : '' }}
+                  {{ $disabled ? 'disabled' : '' }}
                   class="form-control {{ $input_class }}"
                   placeholder="{{ $placeholder }}">{{ $value ?? '' }}</textarea>
     @endif

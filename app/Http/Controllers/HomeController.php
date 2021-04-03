@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\IndexBlogsRequest;
 use App\Http\Requests\StoreBlogCommentRequest;
+use App\Http\Requests\StoreContactMessageRequest;
 use App\Models\Blog;
 use App\Models\BlogComment;
+use App\Models\BlogView;
+use App\Models\ContactMessage;
+use App\Models\SiteConfig;
 use Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -34,12 +38,31 @@ class HomeController extends Controller
      */
     public function blog_view(Request $request, string $slug)
     {
+
+
         $blog = Blog::where('slug', $slug)
             ->with('category', 'user')
             ->withCount(['blog_views', 'blog_comments'])
             ->firstOrFail();
+
+        $view = BlogView::where([
+            ['ip', $request->ip()],
+            ['blog_id', $blog->id]
+        ])->first();
+
+        if(!$view)
+        {
+            BlogView::create([
+                'ip' => $request->ip(),
+                'blog_id' => $blog->id,
+            ]);
+        }
+
         return view('blog.blog-detail', [
-            'blog' => $blog
+            'blog'      => $blog,
+            'title'     => $blog->title,
+            'description'   => strip_tags($blog->content),
+            'meta_image'    => $blog->thumbnail_url,
         ]);
     }
 
@@ -70,6 +93,7 @@ class HomeController extends Controller
         $blogs = $blogs->paginate($request->get('per_page') ?? 5);
         return view('blog.blogs', [
             'blogs' => $blogs,
+            'title'     => 'WEBIMG | Blogs',
         ]);
     }
 
@@ -96,5 +120,63 @@ class HomeController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->withInput()->withErrors('Getting error while creating. Please try again!');
         }
+    }
+
+    /**
+     * Render Contact Page View
+     *
+     * @return Application|Factory|View
+     */
+    public function contact()
+    {
+        $contact_message = SiteConfig::select(['contact_message'])->first();
+
+        return view('blog.contact', [
+            'contact_message' => $contact_message->contact_message,
+            'title'     => 'WEBIMG | Contact Us',
+        ]);
+    }
+
+    public function store_contact_message(StoreContactMessageRequest $request): RedirectResponse
+    {
+        $params = $request->only([
+            'email',
+            'subject',
+            'message'
+        ]);
+
+        ContactMessage::create($params);
+
+        return redirect()->route('blog.contact')->with('success', 'Successfully Received Your Message. We Will Contact You Soon.');
+    }
+
+    public function about()
+    {
+        $about = SiteConfig::select(['about'])->first();
+
+        if(!$about)
+        {
+            return redirect()->back()->withErrors('Invalid request');
+        }
+
+        return view('blog.about-policy', [
+            'content'   => $about->about,
+            'title'     => 'WEBIMG | About Us',
+        ]);
+    }
+
+    public function policy()
+    {
+        $policy = SiteConfig::select('policy')->first();
+
+        if(!$policy)
+        {
+            return redirect()->back()->withErrors('Invalid request');
+        }
+
+        return view('blog.about-policy', [
+            'content'       => $policy->policy,
+            'title'         => "WEBIMG | Policy"
+        ]);
     }
 }

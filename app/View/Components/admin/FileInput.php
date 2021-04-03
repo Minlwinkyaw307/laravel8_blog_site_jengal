@@ -56,7 +56,6 @@ class FileInput extends Component
      */
     public $previewable;
 
-
     /**
      * @var string
      */
@@ -66,6 +65,11 @@ class FileInput extends Component
      * @var bool
      */
     public $required;
+
+    /**
+     * @var boolean
+     */
+    public $disabled;
 
 
     /**
@@ -87,7 +91,7 @@ class FileInput extends Component
                                 $placeholder = 'Please Fill The Form',
                                 $id = null, $input_class = null,
                                 $multiple=false, $type='*/*', $required=true,
-                                $show_preview=true, $previewable=true)
+                                $show_preview=true, $previewable=true, $disabled=false)
     {
         $this->name = $name;
 
@@ -115,6 +119,7 @@ class FileInput extends Component
 
         $this->required = $required;
 
+        $this->disabled = $disabled;
     }
 
     /**

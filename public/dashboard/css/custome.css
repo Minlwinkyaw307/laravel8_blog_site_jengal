@@ -203,3 +203,11 @@
     border-top-right-radius: .2rem !important;
     border-bottom-right-radius: .2rem !important;
 }
+
+.outline-none {
+    outline: 0 !important;
+}
+
+.outline-none:focus {
+    outline: 0 !important;
+}

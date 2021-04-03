@@ -29,7 +29,8 @@
                                     placeholder="Please Enter Category Name"
                                     class="col-md-12"
                                     :required="true"
-                                ></x-admin::text-input>
+                                >
+                                </x-admin::text-input>
 
                                 <x-admin::text-input
                                     label="Description"

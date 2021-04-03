@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Blog;
 use App\Models\BlogComment;
 use App\Models\BlogView;
+use App\Models\ContactMessage;
 use App\Models\User;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Seeder;
@@ -19,8 +20,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-           BlogStatusSeeder::class,
-           CategorySeeder::class,
+            BlogStatusSeeder::class,
+            CategorySeeder::class,
+            SiteConfigSeeder::class,
         ]);
         User::factory(1)->create();
 
@@ -29,5 +31,7 @@ class DatabaseSeeder extends Seeder
         BlogView::factory(200)->create();
 
         BlogComment::factory(200)->create();
+
+        ContactMessage::factory(15)->create();
     }
 }
