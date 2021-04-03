@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
@@ -70,10 +71,13 @@ class Blog extends Model
         'thumbnail',
         'image',
         'title',
+        'slug',
         'content',
         'blog_status_id',
         'category_id',
         'published_at',
+        'user_id',
+        'is_featured',
     ];
 
     protected $appends = ['thumbnailUrl', 'imageUrl'];
@@ -90,8 +94,13 @@ class Blog extends Model
      */
     public function getThumbnailUrlAttribute(): string
     {
-        // TODO: need to fixed to real one
-        return 'https://picsum.photos/750/450/';
+        if($this->thumbnail) {
+            return Storage::url($this->thumbnail);
+        }
+        // To dev purpose;
+        $random_width = rand(725, 750);
+        $random_height = rand(425, 450);
+        return "https://picsum.photos/$random_width/$random_height/";
     }
 
     /**
@@ -101,8 +110,13 @@ class Blog extends Model
      */
     public function getImageUrlAttribute(): string
     {
-        // TODO: need to fixed to real one
-        return 'https://picsum.photos/750/450/';
+        if($this->image) {
+            return Storage::url($this->image);
+        }
+        // To dev purpose;
+        $random_width = rand(725, 750);
+        $random_height = rand(425, 450);
+        return "https://picsum.photos/$random_width/$random_height/";
     }
 
     /**

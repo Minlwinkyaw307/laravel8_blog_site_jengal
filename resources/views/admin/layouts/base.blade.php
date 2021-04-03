@@ -4,7 +4,6 @@
     <title>Dashboard</title>
     <link href="{{ url('dashboard/css/') }}/style.css" rel="stylesheet">
     <link href="{{ url('dashboard/css/') }}/custome.css?v={{ rand(1, 100) }}" rel="stylesheet">
-
     @yield('stylesheet')
 </head>
 <body class="app">
@@ -33,9 +32,9 @@
 {{-- Bottom Top JavaScript Section --}}
 @yield('bt-javascript')
 
-<script src="{{ url('dashboard/js/') }}/custome.js"></script>
 <script type="text/javascript" src="{{ url('dashboard/js/') }}/vendor.js"></script>
 <script type="text/javascript" src="{{ url('dashboard/js/') }}/bundle.js"></script>
+<script src="{{ url('dashboard/js/') }}/custome.js"></script>
 
 {{-- Bottom Bottom JavaScript Section --}}
 @yield('bb-javascript')

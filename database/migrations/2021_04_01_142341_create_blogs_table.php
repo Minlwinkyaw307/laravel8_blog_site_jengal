@@ -23,7 +23,7 @@ class CreateBlogsTable extends Migration
             $table->text('content');
             $table->foreignIdFor(\App\Models\BlogStatus::class, 'blog_status_id');
             $table->foreignIdFor(\App\Models\Category::class)->constrained('categories')->cascadeOnDelete();
-            $table->dateTime('published_at');
+            $table->dateTime('published_at')->nullable();
             $table->boolean('is_featured');
             $table->softDeletes();
             $table->timestamps();

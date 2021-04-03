@@ -50,18 +50,21 @@ class HomeController extends Controller
         if($request->has('category'))
         {
             $category_slug = $request->get('category');
+
             $blogs->whereHas('category', function($query) use ($category_slug) {
                 $query->where('slug', $category_slug);
             });
+        }else {
+            $blogs = $blogs->with('category');
         }
 
         if($request->has('search'))
         {
             $search = $request->get('search');
-            $blogs = $blogs->where('title', 'like', "%$search%")
-                ->orWhere('content', 'like', "%$search%");
+            $blogs = $blogs->where('title', 'like', "%$search%");
         }
-        $blogs = $blogs->with('category')->paginate($request->get('per_page') ?? 5);
+
+        $blogs = $blogs->paginate($request->get('per_page') ?? 5);
         return view('blog.blogs', [
             'blogs' => $blogs,
         ]);

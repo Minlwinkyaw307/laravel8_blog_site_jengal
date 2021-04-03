@@ -18,7 +18,7 @@ class RecentPostsComposer
      *
      * @var int
      */
-    private $limit = 6;
+    private $limit = 3;
 
 
     /**

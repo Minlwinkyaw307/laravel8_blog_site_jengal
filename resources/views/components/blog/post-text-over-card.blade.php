@@ -1,4 +1,4 @@
-<div class="post post-thumb">
+<div class="post post-thumb" style="max-height: 420px;">
     <a class="post-img" href="{{ route('blog.blog_view', $blog->slug) }}"><img src="{{ $blog->thumbnailUrl }}" alt=""></a>
     <div class="post-body">
         <div class="post-meta">

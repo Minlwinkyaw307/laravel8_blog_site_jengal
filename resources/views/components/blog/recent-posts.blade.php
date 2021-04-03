@@ -9,9 +9,6 @@
             @foreach($blogs as $blog)
                 <div class="col-md-4">
                     <x-blog::post-bottomed-text-card :blog="$blog"></x-blog::post-bottomed-text-card>
-                    @if(($loop->index + 1) % 4 === 0)
-                        <div class="clearfix visible-md visible-lg"></div>
-                    @endif
                 </div>
             @endforeach
         </div>

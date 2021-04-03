@@ -10,7 +10,7 @@
                         :title="\Illuminate\Support\Str::plural('Result', count($blogs))">
                     </x-blog::most-read-posts>
 
-                    {!! $blogs->links('blog.partials.pagination') !!}
+                    {!! $blogs->appends(request()->query())->links('partials.pagination') !!}
                 @else
                     <h4>No result found</h4>
                     <x-blog::most-read-posts
