@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BlogCommentController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\BlogStatusController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -12,4 +13,5 @@ Route::name('admin.')->prefix('admin/')->group(function() {
     Route::resource('blog', BlogController::class)->except('show');
     Route::resource('category', CategoryController::class)->except('show');
     Route::resource('blog-status', BlogStatusController::class)->except('show');
+    Route::resource('blog-comment', BlogCommentController::class)->except('show');
 });

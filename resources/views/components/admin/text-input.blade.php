@@ -17,7 +17,9 @@
                   class="form-control {{ $input_class }}"
                   placeholder="{{ $placeholder }}">{{ $value ?? '' }}</textarea>
     @endif
-
+    <div>
+        {{ $slot }}
+    </div>
     @error($name)
     <span class="text-danger">{{ $message }}</span>
     @enderror

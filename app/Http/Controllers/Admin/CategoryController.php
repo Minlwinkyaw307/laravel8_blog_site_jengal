@@ -35,7 +35,7 @@ class CategoryController extends Controller
             $categories->where("name", "like", "%$search%");
         }
 
-        $categories = $categories->paginate($request->get('per_page') ?? 10);
+        $categories = $categories->orderBy('created_at', 'desc')->paginate($request->get('per_page') ?? 10);
 
         return view('admin.category.index', [
             'categories'        => $categories,
@@ -144,7 +144,7 @@ class CategoryController extends Controller
                 throw new \Exception("No Category");
             }
         } catch (\Exception $e) {
-            return redirect()->route('admin.category.index')->withErrors("Couldn't Delete Blog! Please Try Again");
+            return redirect()->route('admin.category.index')->withErrors("Couldn't Delete Category! Please Try Again");
         }
     }
 }

@@ -64,11 +64,11 @@
 
         <div class="masonry-item col-md-6">
             <div class="bgc-white p-20 bd">
-                <h6 class="c-grey-900">Popular Posts</h6>
+                <h4 class="c-grey-900">Popular Posts</h4>
                 <div class="mT-30">
                     <div class="row">
                         @foreach($popular_blogs as $blog)
-                            <a href="" class="col-12 d-flex p-1 c-grey-100 mb-3">
+                            <a href="{{ route('admin.blog.edit', $blog->id) }}" class="col-12 d-flex p-1 c-grey-100 mb-3">
                                 <div class="blog pl-3 mr-3">
                                     <img src="{{ $blog->thumbnailUrl }}" alt="{{ $blog->title }}">
                                 </div>
@@ -87,11 +87,11 @@
 
         <div class="masonry-item col-md-6">
             <div class="bgc-white p-20 bd">
-                <h6 class="c-grey-900">Recent Comments</h6>
+                <h4 class="c-grey-900">Recent Comments</h4>
                 <div class="mT-30">
                     <div class="row px-3">
                         @foreach($recent_comments as $comment)
-                            <a href="" class="col-12 d-flex p-2 c-grey-100 mb-3 border-gray-200 border-radius-10px">
+                            <a href="{{ route('admin.blog-comment.edit', $comment->id) }}" class="col-12 d-flex p-2 c-grey-100 mb-3 border-gray-200 border-radius-10px">
                                 <div class="px-2 flex-grow-1">
                                     <h5 class="d-inline-block text-black">{{ $comment->blog->title }}</h5>
                                     <h6 class="d-block -mt-5 text-black">{{ $comment->name }}</h6>

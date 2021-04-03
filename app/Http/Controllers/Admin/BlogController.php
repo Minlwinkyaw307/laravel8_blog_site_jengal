@@ -33,12 +33,15 @@ class BlogController extends Controller
     {
         $blogs = Blog::with(['category:id,name', 'blog_status:id,name,color', 'user:id,name'])
             ->select(['id', 'title', 'category_id', 'blog_status_id', 'user_id', 'published_at'])
-            ->withCount(['blog_views']);
+            ->withCount(['blog_comments']);
 
         if ($request->has('search') && !is_null($request->get('search'))) {
             $search = $request->get('search');
 
-            $blogs = $blogs->where("title", "like", "%$search%");
+            $blogs = $blogs->where(function($query) use ($search) {
+                $query->where("title", "like", "%$search%")
+                    ->orWhere("content", "like", "%$search%");
+            });
         }
 
         if ($request->has('blog_status_id') && !empty($request->get('blog_status_id'))) {
@@ -126,6 +129,7 @@ class BlogController extends Controller
             return redirect()->back()->withErrors('Invalid Request');
         }
 
+        $item->load('blog_comments');
         $options = $this->get_required_options();
 
         return view('admin.blog.create-or-edit', [

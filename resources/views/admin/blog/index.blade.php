@@ -60,7 +60,7 @@
                             <th scope="col">Category</th>
                             <th scope="col">Status</th>
                             <th scope="col">Published At</th>
-                            <th scope="col">View</th>
+                            <th scope="col">Comments</th>
                             <th scope="col">Actions</th>
                         </tr>
                         </thead>
@@ -82,7 +82,7 @@
                                 <td>
                                     <span class="badge text-white" style="background-color: #{{ $blog->blog_status->color }}">{{ $blog->blog_status->name }}</span>
                                 </td>
-                                <td>{{ $blog->blog_views_count }}</td>
+                                <td>{{ $blog->blog_comments_count }}</td>
                                 <td>{{ $blog->published_at ? \Illuminate\Support\Carbon::parse($blog->published_at)->format('d-m-Y') : 'Not Yet' }}</td>
                                 <td>
                                     <form class="d-inline-block" action="{{ route('admin.blog.destroy', $blog->id) }}" method="post" onsubmit="return confirm('Are you sure? You want to delete selected blog?')">

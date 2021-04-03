@@ -11,6 +11,9 @@
             <option {{ $is_selected($option) }} value="{{ $option }}">{{ $value }}</option>
         @endforeach
     </select>
+    <div>
+        {{ $slot }}
+    </div>
     @error($name)
     <span class="text-danger">{{ $message }}</span>
     @enderror

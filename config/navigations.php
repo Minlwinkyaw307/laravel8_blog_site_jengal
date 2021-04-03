@@ -13,7 +13,7 @@ return [
     ],
     'comment' => [
         'name'      => 'Comment',
-        'route'     => 'admin.blog.index',
+        'route'     => 'admin.blog-comment.index',
         'icon'      => 'c-deep-orange-500 ti-comment-alt'
     ],
     'category' => [

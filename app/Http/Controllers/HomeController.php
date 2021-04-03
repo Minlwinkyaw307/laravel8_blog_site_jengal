@@ -61,7 +61,10 @@ class HomeController extends Controller
         if($request->has('search'))
         {
             $search = $request->get('search');
-            $blogs = $blogs->where('title', 'like', "%$search%");
+            $blogs = $blogs->where(function($query) use ($search) {
+                $query->where("title", "like", "%$search%")
+                    ->orWhere("content", "like", "%$search%");
+            });
         }
 
         $blogs = $blogs->paginate($request->get('per_page') ?? 5);
