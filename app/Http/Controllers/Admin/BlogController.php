@@ -26,7 +26,8 @@ class BlogController extends Controller
     public function index(Request $request)
     {
         $blogs = Blog::with(['category:id,name', 'blog_status:id,name,color', 'user:id,name'])
-            ->select(['id', 'title', 'category_id', 'blog_status_id', 'user_id']);
+            ->select(['id', 'title', 'category_id', 'blog_status_id', 'user_id'])
+            ->withCount(['blog_views']);
 
         if ($request->has('search') && !is_null($request->get('search'))) {
             $search = $request->get('search');

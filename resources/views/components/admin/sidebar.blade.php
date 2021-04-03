@@ -18,7 +18,7 @@
         </div>
         <ul class="sidebar-menu scrollable pos-r">
             @foreach(config('navigations') as $navigation)
-                <li class="nav-item mT-30 {{ \Illuminate\Support\Facades\Route::currentRouteName() == $navigation['route'] ? 'active' : '' }}">
+                <li class="nav-item @if($loop->index == 0) mT-30 @endif {{ \Illuminate\Support\Facades\Route::currentRouteName() == $navigation['route'] ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route($navigation['route']) }}" default>
                         <span
                             class="icon-holder"><i class="c-blue-500 {{ $navigation['icon'] }}"></i>
