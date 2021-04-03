@@ -23,10 +23,16 @@ use Illuminate\Support\Str;
 
 class BlogController extends Controller
 {
+    /**
+     * List all of the blogs available
+     *
+     * @param Request $request
+     * @return Application|Factory|View
+     */
     public function index(Request $request)
     {
         $blogs = Blog::with(['category:id,name', 'blog_status:id,name,color', 'user:id,name'])
-            ->select(['id', 'title', 'category_id', 'blog_status_id', 'user_id'])
+            ->select(['id', 'title', 'category_id', 'blog_status_id', 'user_id', 'published_at'])
             ->withCount(['blog_views']);
 
         if ($request->has('search') && !is_null($request->get('search'))) {
@@ -55,6 +61,12 @@ class BlogController extends Controller
         ]);
     }
 
+    /**
+     * Show form to create a new blog
+     *
+     * @param BlogCreateRequest $request
+     * @return Application|Factory|View
+     */
     public function create(BlogCreateRequest $request)
     {
         $options = $this->get_required_options();
@@ -86,7 +98,7 @@ class BlogController extends Controller
         ]);
 
         $params['user_id'] = 1;
-        $params['slug'] = Str::slug($request->get('title'));
+        $params['slug'] = Str::slug($request->get('title')) . '-' . Str::random(5);
 
         if ($request->hasFile('thumbnail') && $request->hasFile('image')) {
             $params['thumbnail'] = Storage::putFile('blogs', $request->file('thumbnail'));
@@ -151,7 +163,7 @@ class BlogController extends Controller
         ]);
 
         $params['user_id'] = 1;
-        $params['slug'] = Str::slug($request->get('title'));
+        $params['slug'] = Str::slug($request->get('title')) . '-' . Str::random(5);
 
         if ($request->hasFile('thumbnail')) {
             if(Storage::exists($item->thumbnail))
@@ -195,6 +207,15 @@ class BlogController extends Controller
         $item = Blog::find($id);
         try {
             if ($item) {
+                if(Storage::exists($item->thumbnail))
+                {
+                    Storage::delete($item->thumbnail);
+                }
+                if(Storage::exists($item->image))
+                {
+                    Storage::delete($item->image);
+                }
+
                 $item->delete();
                 return redirect()->route('admin.blog.index')->with('success', 'Successfully Deleted');
             }else{

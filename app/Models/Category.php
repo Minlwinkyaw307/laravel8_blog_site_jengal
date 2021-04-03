@@ -45,7 +45,7 @@ class Category extends Model
     use LogsActivity;
 
 
-    protected $fillable = ['name', 'description', 'color'];
+    protected $fillable = ['name', 'slug', 'description', 'color'];
 
     protected $guarded = [];
 

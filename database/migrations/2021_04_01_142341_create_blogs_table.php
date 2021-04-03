@@ -19,7 +19,7 @@ class CreateBlogsTable extends Migration
             $table->string('image');
             $table->foreignId('user_id');
             $table->string('title');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->text('content');
             $table->foreignIdFor(\App\Models\BlogStatus::class, 'blog_status_id');
             $table->foreignIdFor(\App\Models\Category::class)->constrained('categories')->cascadeOnDelete();
