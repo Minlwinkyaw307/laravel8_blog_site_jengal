@@ -24,8 +24,8 @@
                         <h3>Contact Information</h3>
                         <p>{{ $contact_message }}</p>
                         <ul class="list-style">
-                            <li><p><strong>Email:</strong> <a href="mailto:{{ $configs->email }}">Webmag@email.com</a></p></li>
-                            <li><p><strong>Phone:</strong> <a href="phoneto:{{ $configs->phone }}">213-520-7376</a></p></li>
+                            <li><p><strong>Email:</strong> <a href="mailto:{{ $configs->email }}">{{ $configs->email }}</a></p></li>
+                            <li><p><strong>Phone:</strong> <a href="phoneto:{{ $configs->phone }}">{{ $configs->phone }}</a></p></li>
                             <li><p><strong>Address:</strong> {{ $configs->address }}</p></li>
                         </ul>
                     </div>

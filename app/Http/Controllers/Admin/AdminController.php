@@ -70,24 +70,9 @@ class AdminController extends Controller
     public function post_login(LoginRequest $request): RedirectResponse
     {
         if (Auth::attempt(['email' => $request->get('email'), 'password' => $request->get('password'),], $request->get('remember') ?? false)) {
-            $user = User::where('id', Auth::id())->first();
-
-            activity('user')
-                ->causedBy($user)
-                ->log('login');
 
             return redirect()->route('admin.index');
         } else {
-            $user = User::where('email', request('email'))->first();
-            if ($user) {
-                activity('user')
-                    ->causedBy($user)
-                    ->log('failed_login');
-            } else {
-                activity('user')
-                    ->withProperties(['email' => request('email')])
-                    ->log('failed_login');
-            }
             return redirect()->back()->withErrors('Login Failed! Please Try Again');
         }
     }
